@@ -9,8 +9,9 @@
 </head>
 <body>
     <div class="left-section">
+        <p class="photo-credit">Photo by Johnny Goerend</p>
         <div class="banner">
-            Hello
+            <h1 class="banner-text">ODIN</h1>
         </div>
     </div>
     <div class="right-section">
@@ -27,47 +28,83 @@
                 <form class="form" action="example.com/path" method="post">
                     
                     <fieldset class="fieldset">
-                        <label class="label" for="first_name">FIRST NAME:</label>
-                        <input class="input" type="text" id="first_name" required>
+                        <label class="label" for="firstName">FIRST NAME:</label>
+                        <input class="input" type="text" id="firstName" required>
+                        <div id="firstNameError" class="error"></div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
                         <label class="label" for="last_name">LAST NAME:</label>
                         <input class="input" type="text" id="last_name" required>
+                        <div id="lasttNameError" class="error"></div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
                         <label class="label" for="email">EMAIL:</label>
                         <input class="input" type="email" id="email" required>
+                        <div id="emailError" class="error"></div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
                         <label class="label" for="phone">PHONE NUMBER:</label>
                         <input class="input" type="text" id="phone" pattern="(\d{9})" required>
+                        <div id="phoneError" class="error"></div>
                     </fieldset>
                   
                     <fieldset class="fieldset">
                         <label class="label" for="password">PASSWORD:</label>
                         <input class="input" type="password" id="password" required>
+                        <div id="passwordError" class="error"></div>
                     </fieldset>
     
                     <fieldset class="fieldset">
                         <label class="label" for="confirm">CONFIRM PASSWORD:</label>
                         <input class="input" type="password" id="confirm" required>
+                        <div id="passwordConfirmError" class="error"></div>
                     </fieldset>
                   
                 </form>
             </div>
             <div class="bottom-right">
-                <button class="account">Create Account</button>
-                <p class="log-in">Already have an account? <span class=""log-in-span><a class="log-in-link">Log In</a></span></p>
+                <button id="submit" class="account">Create Account</button>
+                <p class="log-in">Already have an account? <span class=""log-in-span><a class="log-in-link" href="#">Log In</a></span></p>
             </div>
         </div>
         
         
     </div>
 
-    
+    <script>
+        const submit = document.getElementById('submit')
+        const firstName = document.getElementById('firstName')
+        const firstNameError = document.getElementById('firstNameError')
+        const lasttNameError = document.getElementById('lastNameError')
+        const emailError = document.getElementById('emailError')
+        const phoneError = document.getElementById('phoneError')
+        const passwordError = document.getElementById('passwordError')
+        const confirmPasswordError = document.getElementById('confirmPasswordError')
+        const inputs = document.querySelectorAll('.input')
+
+        // inputs.forEach(input => input.addEventListener('click', revealError))
+
+        // function revealError() {
+        //     if (firstName.value === '') {
+        //     firstNameError.innerText = 'Please enter your first name'
+        // }
+        // }
+
+        firstName.addEventListener('input', () => {
+            if (firstName.value === '') {
+                firstNameError.innerHTML = 'Please enter your first name'
+            } else {
+                firstNameError.innerHTML = ''
+            }
+            
+        })
+
+        
+
+    </script>
     
 </body>
 </html>
