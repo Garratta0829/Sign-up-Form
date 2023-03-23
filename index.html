@@ -30,13 +30,13 @@
                     <fieldset class="fieldset">
                         <label class="label" for="firstName">FIRST NAME:</label>
                         <input class="input" type="text" id="firstName" required>
-                        <div id="firstNameError" class="error"></div>
+                        <div id="firstNameError" class="error error-message"></div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
-                        <label class="label" for="last_name">LAST NAME:</label>
-                        <input class="input" type="text" id="last_name" required>
-                        <div id="lasttNameError" class="error"></div>
+                        <label class="label" for="lastName">LAST NAME:</label>
+                        <input class="input" type="text" id="lastName" required>
+                        <div id="lastNameError" class="error"></div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
@@ -78,12 +78,18 @@
         const submit = document.getElementById('submit')
         const firstName = document.getElementById('firstName')
         const firstNameError = document.getElementById('firstNameError')
-        const lasttNameError = document.getElementById('lastNameError')
+        const lastName = document.getElementById('lastName')
+        const lastNameError = document.getElementById('lastNameError')
+        const email = document.getElementById('email')
         const emailError = document.getElementById('emailError')
+        const phone = document.getElementById('phone')
         const phoneError = document.getElementById('phoneError')
+        const password = document.getElementById('password')
         const passwordError = document.getElementById('passwordError')
-        const confirmPasswordError = document.getElementById('confirmPasswordError')
+        const confirmPassword = document.getElementById('confirm')
+        const confirmPasswordError = document.getElementById('passwordConfirmError')
         const inputs = document.querySelectorAll('.input')
+        const errors = document.querySelectorAll('.error')
 
         // inputs.forEach(input => input.addEventListener('click', revealError))
 
@@ -92,16 +98,112 @@
         //     firstNameError.innerText = 'Please enter your first name'
         // }
         // }
+        // function clearError() {
+        //     for(let error of errors) {
+        //         error.classList.remove('error')
+        //     }
+        // }
+        
+        password.addEventListener('input', () => {
 
-        firstName.addEventListener('input', () => {
-            if (firstName.value === '') {
-                firstNameError.innerHTML = 'Please enter your first name'
-            } else {
-                firstNameError.innerHTML = ''
-            }
-            
         })
 
+
+        if (email.validity.typeMismatch) {
+
+        }
+
+        
+
+        submit.onclick = function(event) {
+            
+            // clearError()
+
+            
+
+            if (firstName.value === '' || firstName.value === null) {
+                firstNameError.classList.add('error')
+                firstNameError.innerHTML = 'Please enter your first name'
+                firstName.style.border = '2px solid red'
+            } else {
+                firstNameError.innerHTML = ''
+                firstNameError.classList.remove('error')
+                firstName.style.border = '1px solid rgb(232, 232, 232)';
+                
+            }
+
+            
+            if (lastName.value === '' || lastName.value === null) {
+                lastNameError.innerHTML = 'Please enter your last name'
+                lastName.style.border = '2px solid red'
+            } else {
+                lastNameError.innerHTML = ''
+                lastName.style.border = '1px solid rgb(232, 232, 232)'
+            }
+
+
+            if (email.value === '' || email.value === null) {
+                emailError.innerHTML = 'Please enter a valid email'
+                email.style.border = '2px solid red'
+            } else {
+                emailError.innerHTML = ''
+                email.style.border = '1px solid rgb(232, 232, 232)'
+            }
+
+
+            if (phone.value === '' || phone.value === null) {
+                phoneError.innerHTML = 'Please enter a 10-digit phone number'
+                phone.style.border = '2px solid red'
+            } else {
+                phoneError.innerHTML = ''
+                phone.style.border = '1px solid rgb(232, 232, 232)'
+            }
+
+
+            if (password.value === '' || password.value === null || 
+                password.validity.patternMismatch) {
+                passwordError.innerHTML = 'Please enter a password <br> must be at least 8 characters'
+                password.style.border = '2px solid red'
+            } else if (password.value.length < 8) {
+                passwordError.innerHTML = 'Password must be at least 8 characters long'
+                password.style.border = '2px solid red'
+            } else {
+                passwordError.innerHTML = ''
+                password.style.border = '1px solid rgb(232, 232, 232)'
+            }
+
+
+            if (confirmPassword.value === '' || confirmPassword.value === null) {
+                confirmPasswordError.innerHTML = 'Please confirm your password'
+                confirmPassword.style.border = '2px solid red'
+            } else if (confirmPassword.value !== password.value) {
+                confirmPasswordError.innerHTML = 'Does not match password'
+                confirmPassword.style.border = '2px solid red'
+            } else {
+                confirmPasswordError.innerHTML = ''
+                firstName.style.border = '1px solid rgb(232, 232, 232)'
+            }
+
+
+        }
+
+
+        // function showError() {
+
+        // }
+
+        // function clearError() {
+
+        // }
+
+        // firstName.addEventListener('input', () => {
+            
+            
+        // })
+
+
+        // if create account button is pressed, find the inputs where nothing it inputted
+        // and display error messages
         
 
     </script>
