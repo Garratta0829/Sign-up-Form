@@ -10,7 +10,6 @@ body {
     width: 400px;
     height: 90vh;
     background-image: url("images/johny-goerend-U_diPCXCBxU-unsplash.jpg");
-    /* background-color: blue; */
     background-size: cover;
     position: relative;
     display: flex;
@@ -69,13 +68,11 @@ body {
     font-size: 1.4rem;
 }
 
-
 .italic-text {
     font-style: italic;
 }
 
 .top-right {
-    /* background-color: rgb(245, 245, 245); */
     width: 700px;
     margin-bottom: 50px;
 }
@@ -84,7 +81,6 @@ body {
     position: relative;
     background-color: white;
     height: 40vh;
-    /* width: 900px; */
     width: 100%;
     box-shadow: 0px 5px 5px rgb(217, 217, 217);
 }
@@ -100,14 +96,12 @@ body {
     position: absolute;
     bottom: 45px;
     left: 20px;
-    /* border: 1px solid black; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     width: 600px;
     height: 65%;
     margin-top: 10px;
-    /* margin-left: 50px; */
 }
 
 .fieldset {
@@ -130,25 +124,22 @@ body {
     width: 250px;
 }
 
-.input:active {
+/* .input:active {
     color: red;
-    
-}
+} */
 
 /* .input:invalid {
     border: red solid 2px
 } */
 
 .error {
-    /* background-color: rgb(255, 183, 183); */
-    color: red;
-    font-size: .8rem;
-    font-family: 'Courier New', Courier, monospace;
-    padding-top: 5px;
+    color: white;
+    font-size: .7rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-top: 2px;
 }
 
 .bottom-right {
-    /* background-color: rgb(245, 245, 245); */
     margin-top: 30px;
     margin-left: 40px;
 }
@@ -171,6 +162,7 @@ body {
 .account:active {
     color: rgb(88, 117, 58);
     background-color: white;
+    color: rgb(0, 198, 129)
 }
 
 .log-in-link {

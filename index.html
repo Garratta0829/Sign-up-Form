@@ -30,37 +30,37 @@
                     <fieldset class="fieldset">
                         <label class="label" for="firstName">FIRST NAME:</label>
                         <input class="input" type="text" id="firstName" required>
-                        <div id="firstNameError" class="error error-message"></div>
+                        <div id="firstNameError" class="error error-message">Please enter your first name</div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
                         <label class="label" for="lastName">LAST NAME:</label>
                         <input class="input" type="text" id="lastName" required>
-                        <div id="lastNameError" class="error"></div>
+                        <div id="lastNameError" class="error">Please enter your last name</div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
                         <label class="label" for="email">EMAIL:</label>
                         <input class="input" type="email" id="email" required>
-                        <div id="emailError" class="error"></div>
+                        <div id="emailError" class="error">Please enter a valid email address <br> e.g. OdinProject@outlook.com</div>
                     </fieldset>
                    
                     <fieldset class="fieldset">
                         <label class="label" for="phone">PHONE NUMBER:</label>
-                        <input class="input" type="text" id="phone" pattern="(\d{9})" required>
-                        <div id="phoneError" class="error"></div>
+                        <input class="input" type="text" id="phone" pattern="(\d{9})" maxlength="10" required>
+                        <div id="phoneError" class="error">Please enter a 10-digit phone number</div>
                     </fieldset>
                   
                     <fieldset class="fieldset">
                         <label class="label" for="password">PASSWORD:</label>
                         <input class="input" type="password" id="password" required>
-                        <div id="passwordError" class="error"></div>
+                        <div id="passwordError" class="error">Password must be 8-12 characters long, <br> include at least one uppercase character, one lowercase character, and one digit</div>
                     </fieldset>
     
                     <fieldset class="fieldset">
                         <label class="label" for="confirm">CONFIRM PASSWORD:</label>
                         <input class="input" type="password" id="confirm" required>
-                        <div id="passwordConfirmError" class="error"></div>
+                        <div id="passwordConfirmError" class="error">Please confirm your password</div>
                     </fieldset>
                   
                 </form>
@@ -88,124 +88,157 @@
         const passwordError = document.getElementById('passwordError')
         const confirmPassword = document.getElementById('confirm')
         const confirmPasswordError = document.getElementById('passwordConfirmError')
-        const inputs = document.querySelectorAll('.input')
-        const errors = document.querySelectorAll('.error')
+        // const inputs = document.querySelectorAll('.input')
+        // const errors = document.querySelectorAll('.error')
 
-        // inputs.forEach(input => input.addEventListener('click', revealError))
+       
 
-        // function revealError() {
-        //     if (firstName.value === '') {
-        //     firstNameError.innerText = 'Please enter your first name'
-        // }
-        // }
-        // function clearError() {
-        //     for(let error of errors) {
-        //         error.classList.remove('error')
-        //     }
-        // }
-        
-        password.addEventListener('input', () => {
+        firstName.addEventListener('input', () => {
 
+            if (firstName.value.match(/^[a-zA-z]{2,}$/)) {
+                firstName.style.border = '1px solid rgb(0, 207, 31)'
+                firstNameError.style.color = 'white'
+            } else {
+                firstName.style.border = '1px solid rgb(232, 232, 232)';
+            }
         })
 
 
-        if (email.validity.typeMismatch) {
+        lastName.addEventListener('input', () => {
+            
+            if (lastName.value.match(/^[a-zA-Z]{2,}$/)) {
+                lastName.style.border = '1px solid rgb(0, 207, 31)'
+                lastNameError.style.color = 'white'
+            } else {
+                lastName.style.border = '1px solid rgb(232, 232, 232)';
+            }
+        })
 
-        }
 
+        email.addEventListener('input', () => {
+            const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+).([a-z]{2,8})(\.[a-z]{2,8})?$/
+
+            if (email.value.match(emailRegex)) {
+                email.style.border = '1px solid rgb(0, 207, 31)'
+                emailError.style.color = 'white'
+            } else {
+                email.style.border = 'red'
+                emailError.style.color = 'grey'
+            }
+        })
+
+
+        phone.addEventListener('input', () => {
+            
+            if (phone.value.match(/^\d{10}$/)) {
+                phoneError.style.color = 'white'
+                phone.style.border = '1px solid rgb(0, 207, 31)'
+            } else if (phone.value === '' || phone.value === null) {
+                phone.style.border = '1px solid rgb(232, 232, 232)'
+                phoneError.style.color = 'white'
+            } else {
+                phoneError.style.color = 'grey'
+            }
+        })
         
+        
+        password.addEventListener('keyup', (e) => {
+            const pwRegEx = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,12}$/
+
+            if (password.value.match(pwRegEx)) {
+                passwordError.style.color = 'white'
+                password.style.border = '1px solid rgb(0, 207, 31)'
+            } else {
+                passwordError.style.color = 'grey'
+            }
+        })
+
+
+        confirmPassword.addEventListener('keyup', (e) => {
+            const pwRegEx = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,12}$/
+
+            if (confirmPassword.value.match(pwRegEx)) {
+                confirmPasswordError.style.color = 'white'
+                confirmPassword.style.border = '1px solid rgb(0, 207, 31)'
+            } else {
+                confirmPasswordError.style.color = 'grey'
+            }
+        })
+
+
 
         submit.onclick = function(event) {
             
-            // clearError()
+            const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+).([a-z]{2,8})(\.[a-z]{2,8})?$/
+            const pwRegEx = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,12}$/
 
-            
 
             if (firstName.value === '' || firstName.value === null) {
-                firstNameError.classList.add('error')
-                firstNameError.innerHTML = 'Please enter your first name'
                 firstName.style.border = '2px solid red'
+                firstNameError.style.color = 'red'
+            } else if (!firstName.value.match(/^[a-zA-Z]{2,}$/)) {
+                firstName.style.border = '2px solid red'
+                firstNameError.style.color = 'red'
             } else {
-                firstNameError.innerHTML = ''
-                firstNameError.classList.remove('error')
-                firstName.style.border = '1px solid rgb(232, 232, 232)';
-                
             }
 
-            
+
             if (lastName.value === '' || lastName.value === null) {
-                lastNameError.innerHTML = 'Please enter your last name'
+                lastNameError.style.color = 'red'
                 lastName.style.border = '2px solid red'
+            } else if (!lastName.value.match(/^[a-zA-Z]{2,}$/)) {
+                lastName.style.border = '2px solid red'
+                lastNameError.style.color = 'red'
             } else {
-                lastNameError.innerHTML = ''
-                lastName.style.border = '1px solid rgb(232, 232, 232)'
             }
 
 
             if (email.value === '' || email.value === null) {
-                emailError.innerHTML = 'Please enter a valid email'
+                emailError.style.color = 'red'
+                email.style.border = '2px solid red'
+            } else if (!email.value.match(emailRegex)){
+                emailError.style.color = 'red'
                 email.style.border = '2px solid red'
             } else {
-                emailError.innerHTML = ''
-                email.style.border = '1px solid rgb(232, 232, 232)'
             }
 
 
             if (phone.value === '' || phone.value === null) {
-                phoneError.innerHTML = 'Please enter a 10-digit phone number'
+                phoneError.innerText = 'Please enter a 10-digit phone number'
+                phoneError.style.color = 'red';
+                phone.style.border = '2px solid red'
+            } else if (!phone.value.match(/\d{10}/)) {
+                phoneError.innerHTML = 'Must be a 10-digit phone number'
+                phoneError.style.color = 'red';
                 phone.style.border = '2px solid red'
             } else {
-                phoneError.innerHTML = ''
-                phone.style.border = '1px solid rgb(232, 232, 232)'
             }
 
 
-            if (password.value === '' || password.value === null || 
-                password.validity.patternMismatch) {
-                passwordError.innerHTML = 'Please enter a password <br> must be at least 8 characters'
+            if (password.value === '' || password.value === null) {
+                passwordError.style.color = 'red'
                 password.style.border = '2px solid red'
-            } else if (password.value.length < 8) {
-                passwordError.innerHTML = 'Password must be at least 8 characters long'
+            } else if (!password.value.match(pwRegEx)) {
+                
+                passwordError.style.color = 'red'
                 password.style.border = '2px solid red'
             } else {
-                passwordError.innerHTML = ''
-                password.style.border = '1px solid rgb(232, 232, 232)'
             }
 
 
             if (confirmPassword.value === '' || confirmPassword.value === null) {
-                confirmPasswordError.innerHTML = 'Please confirm your password'
+                confirmPasswordError.style.color = 'red'
                 confirmPassword.style.border = '2px solid red'
             } else if (confirmPassword.value !== password.value) {
-                confirmPasswordError.innerHTML = 'Does not match password'
+                confirmPasswordError.innerText = 'Passwords do not match'
+                confirmPasswordError.style.color = 'red'
                 confirmPassword.style.border = '2px solid red'
+                passwordError.innerText = 'Passwords do not Match'
+                passwordError.style.color = 'red'
+                password.style.border = '2px solid red'
             } else {
-                confirmPasswordError.innerHTML = ''
-                firstName.style.border = '1px solid rgb(232, 232, 232)'
             }
-
-
         }
-
-
-        // function showError() {
-
-        // }
-
-        // function clearError() {
-
-        // }
-
-        // firstName.addEventListener('input', () => {
-            
-            
-        // })
-
-
-        // if create account button is pressed, find the inputs where nothing it inputted
-        // and display error messages
-        
-
     </script>
     
 </body>
